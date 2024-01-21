@@ -1,0 +1,67 @@
+@startuml
+class logic.monster.Leader {
+- int maxChargeTurns
+- int currentChargeTurns
+- boolean isGuard
++ <<Create>> Leader(String,int,int,int,Attack,int)
++ int getMaxChargeTurns()
++ void setMaxChargeTurns(int)
++ int getCurrentChargeTurns()
++ void setCurrentChargeTurns(int)
++ boolean isReady()
++ int takeDamage(Attack)
++ boolean isGuard()
++ void setGuard(boolean)
+}
+class logic.attack.Attack {
+# int power
+# String name
+# boolean isLeader
++ <<Create>> Attack(int,String,boolean)
++ int getPower()
++ void setPower(int)
++ String getName()
++ void setName(String)
++ boolean isLeader()
++ void setLeader(boolean)
++ int calculateDamage(Monster)
++ boolean equals(Object)
+}
+class logic.monster.Monster {
+# String name
+# int hp
+# int maxhp
+# int def
+# int sp_def
+# Attack attack
+# boolean isDead
+# boolean attackStatus
++ <<Create>> Monster(String,int,int,int,Attack)
++ String getName()
++ void setName(String)
++ int getHp()
++ void setHp(int)
++ int getDefense()
++ void setDefense(int)
++ int getSpecialDefense()
++ void setSpecialDefense(int)
++ Attack getAttack()
++ void setAttack(Attack)
++ void setMaxhp(int)
++ int getMaxhp()
++ int takeDamage(Attack)
++ boolean isDead()
++ void setDead(boolean)
++ boolean isReady()
++ boolean getAttackedStatus()
++ void setAttackedStatus(boolean)
+}
+class logic.attack.SPAttack {
++ <<Create>> SPAttack(int,String,boolean)
++ int calculateDamage(Monster)
+}
+
+
+logic.monster.Monster <|-- logic.monster.Leader
+logic.attack.Attack <|-- logic.attack.SPAttack
+@enduml
